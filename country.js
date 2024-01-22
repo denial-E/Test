@@ -1,4 +1,3 @@
-
 function makeRequest(url, callback) {
     var xhr = new XMLHttpRequest();
   
@@ -16,8 +15,7 @@ function makeRequest(url, callback) {
     xhr.send();
   }
   
-  
-  function displayCountryFlags() {
+  function displayCountryInfo() {
     var countriesApiUrl = "https://restcountries.com/v3.1/all";
   
     makeRequest(countriesApiUrl, function (error, countries) {
@@ -25,13 +23,15 @@ function makeRequest(url, callback) {
         console.error("Error fetching countries:", error);
       } else {
         countries.forEach(function (country) {
-          if (country.flags) {
-            console.log(`${country.name.common}: ${country.flags.svg}`);
-          }
+          console.log(`Country: ${country.name.common}`);
+          console.log(`Region: ${country.region}`);
+          console.log(`Sub-region: ${country.subregion}`);
+          console.log(`Population: ${country.population}`);
+          console.log("------------");
         });
       }
     });
   }
-  displayCountryFlags();
   
-
+  displayCountryInfo();
+  
